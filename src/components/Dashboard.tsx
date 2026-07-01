@@ -70,6 +70,7 @@ export function Dashboard() {
                 
                 {/* Node Card */}
                 <button 
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => isUnlocked && setScreen(node.id as any)}
                   disabled={!isUnlocked}
                   className={`card w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 text-right transition-all duration-300 ${isUnlocked ? 'hover:-translate-y-1 hover:shadow-lg cursor-pointer' : 'opacity-60 cursor-not-allowed grayscale'}`}

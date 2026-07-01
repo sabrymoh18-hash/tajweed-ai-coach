@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useStore } from '../store/useStore';
 
 export function Feedback() {
-  const { setScreen, lastFeedback, stats, setStats } = useStore();
+  const { setScreen, lastFeedback, setStats } = useStore();
 
   useEffect(() => {
     if (lastFeedback) {

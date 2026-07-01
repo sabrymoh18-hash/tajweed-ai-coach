@@ -46,6 +46,7 @@ export function TajweedRules() {
             {openCat === cat.id && (
               <div className="p-5 border-t border-black/5 bg-white/50 space-y-6">
                 {cat.rules.map((r, i) => {
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   const rule = r as any;
                   return (
                   <div key={i} className="relative transition-all duration-500">

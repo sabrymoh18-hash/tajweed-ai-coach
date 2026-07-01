@@ -17,6 +17,7 @@ export function useAudio() {
       setPermitted(true);
       setActive(true);
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const AudioContextCtor = window.AudioContext || (window as any).webkitAudioContext;
       const ctx = new AudioContextCtor();
       audioCtxRef.current = ctx;

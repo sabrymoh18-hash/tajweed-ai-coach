@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from '../store/useStore';
-import { Waveform } from './ui/Waveform';
-
 export function GoldenMirror() {
   const { setScreen, addXP } = useStore();
   const [recording, setRecording] = useState(false);
@@ -9,11 +7,11 @@ export function GoldenMirror() {
   const [score, setScore] = useState<number | null>(null);
 
   // Mock audio data for the "Perfect AI Waveform"
-  const perfectBars = React.useMemo(() => Array.from({ length: 40 }, () => Math.random() * 80 + 20), []);
+  const [perfectBars] = useState(() => Array.from({ length: 40 }, () => Math.random() * 80 + 20));
   const [userBars, setUserBars] = useState<number[]>(Array(40).fill(10));
 
   useEffect(() => {
-    let interval: any;
+    let interval: ReturnType<typeof setInterval>;
     if (recording) {
       interval = setInterval(() => {
         setUserBars(prev => {

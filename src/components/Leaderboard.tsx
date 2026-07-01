@@ -33,6 +33,7 @@ export function Leaderboard() {
     };
     
     const combined = [...GHOST_USERS, currentUser].sort((a, b) => b.xp - a.xp);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUsers(combined);
   }, [stats]);
 

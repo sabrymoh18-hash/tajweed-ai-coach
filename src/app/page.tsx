@@ -19,6 +19,7 @@ export default function Home() {
 
   // Fix hydration issues with Zustand persist
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     
     // Update last visit and check for streak

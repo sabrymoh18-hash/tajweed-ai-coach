@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AYAHS } from '../data/constants';
 
 export interface Ayah {
@@ -28,7 +28,7 @@ export function useQuran() {
       const data = await res.json();
       
       if (data.code === 200 && data.data.ayahs.length > 0) {
-        // Grab top 3 ayahs from the page
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newAyahs = data.data.ayahs.slice(0, 3).map((a: any) => ({
           text: a.text,
           name: `سورة ${data.data.surahs[Object.keys(data.data.surahs)[0]].name} — آية ${a.numberInSurah}`,

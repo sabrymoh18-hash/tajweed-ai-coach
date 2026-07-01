@@ -8,7 +8,7 @@ export function TawaturRaids() {
   const [syncPower, setSyncPower] = useState(0);
 
   useEffect(() => {
-    let t: any;
+    let t: ReturnType<typeof setInterval>;
     if (phase === 'lobby') {
       t = setInterval(() => {
         setCountdown((c) => Math.max(0, c - 1));
@@ -23,8 +23,10 @@ export function TawaturRaids() {
 
   useEffect(() => {
     if (phase === 'lobby' && countdown === 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase('sync');
     } else if (phase === 'sync' && syncPower >= 100) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase('result');
       addXP(500); // Reward massive XP for MMO Raid
       if (!stats.unlockedBadges.includes('إجازة الفاتحة')) {
@@ -101,7 +103,7 @@ export function TawaturRaids() {
           <div className="text-center animate-in zoom-in duration-700">
             <i className="fa-solid fa-gem text-6xl text-cyan-400 mb-6 drop-shadow-[0_0_30px_rgba(34,211,238,0.6)]"></i>
             <h2 className="text-4xl font-black mb-2 text-white">اكتمل التواتر!</h2>
-            <p className="text-gray-400 mb-8">حصلت المجموعة على إجازة "الفاتحة"</p>
+            <p className="text-gray-400 mb-8">حصلت المجموعة على إجازة &quot;الفاتحة&quot;</p>
             
             <button onClick={() => setScreen('dashboard')} className="px-8 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(34,211,238,0.4)]">
               عودة للوحة الشرف
