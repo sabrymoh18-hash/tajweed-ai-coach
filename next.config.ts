@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Improve compatibility with older phones/browsers
+  experimental: {
+    optimizePackageImports: [],
+  },
 };
 
 export default nextConfig;
