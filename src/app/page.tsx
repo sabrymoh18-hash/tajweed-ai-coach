@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useStore } from '../store/useStore';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Components
 import { Dashboard } from '../components/Dashboard';
@@ -12,9 +13,10 @@ import { Leaderboard } from '../components/Leaderboard';
 import { TuhfaFullText } from '../components/TuhfaFullText';
 import { GoldenMirror } from '../components/GoldenMirror';
 import { TawaturRaids } from '../components/TawaturRaids';
+import { BottomNav } from '../components/ui/BottomNav';
 
 export default function Home() {
-  const { screen, stats, setStats, setScreen } = useStore();
+  const { screen, stats, setStats } = useStore();
   const [mounted, setMounted] = useState(false);
 
   // Fix hydration issues with Zustand persist
@@ -52,47 +54,28 @@ export default function Home() {
 
       {/* Dynamic Screen Routing */}
       <div className="relative z-10 px-4">
-        {screen === 'dashboard'   && <Dashboard />}
-        {screen === 'makharij'    && <MakharijRadar />}
-        {screen === 'breathwork'  && <Breathwork />}
-        {screen === 'tajweed'     && <TajweedRules />}
-        {screen === 'feedback'    && <Feedback />}
-        {screen === 'leaderboard' && <Leaderboard />}
-        {screen === 'tuhfa'       && <TuhfaFullText />}
-        {screen === 'golden_mirror' && <GoldenMirror />}
-        {screen === 'tawatur'     && <TawaturRaids />}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={screen}
+            initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }}
+            transition={{ duration: 0.3 }}
+          >
+            {screen === 'dashboard'   && <Dashboard />}
+            {screen === 'makharij'    && <MakharijRadar />}
+            {screen === 'breathwork'  && <Breathwork />}
+            {screen === 'tajweed'     && <TajweedRules />}
+            {screen === 'feedback'    && <Feedback />}
+            {screen === 'leaderboard' && <Leaderboard />}
+            {screen === 'tuhfa'       && <TuhfaFullText />}
+            {screen === 'golden_mirror' && <GoldenMirror />}
+            {screen === 'tawatur'     && <TawaturRaids />}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Navigation Bar (Mobile & Desktop) */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0a1a12] via-[#0a1a12]/90 to-transparent backdrop-blur-sm">
-        <div className="max-w-md mx-auto flex items-center justify-between glass px-6 py-3 rounded-2xl shadow-2xl shadow-black/50 border border-green-900/30">
-          <button onClick={() => setScreen('dashboard')} className={`flex flex-col items-center gap-1 transition-all ${screen === 'dashboard' ? 'text-green-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
-            <i className="fa-solid fa-house text-lg"></i>
-            <span className="text-[10px] font-bold">الرئيسية</span>
-          </button>
-          
-          <button onClick={() => setScreen('makharij')} className={`flex flex-col items-center gap-1 transition-all ${screen === 'makharij' ? 'text-green-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
-            <i className="fa-solid fa-radar text-lg"></i>
-            <span className="text-[10px] font-bold">المخارج</span>
-          </button>
-          
-          <div className="relative -top-6">
-            <button onClick={() => stats.level >= 2 && setScreen('breathwork')} className={`w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-lg shadow-green-900/50 transition-transform ${stats.level < 2 ? 'opacity-50 grayscale' : 'hover:scale-110'} ${screen === 'breathwork' ? 'bg-green-500 text-white' : 'bg-[#1a3a28] text-green-400 border-2 border-green-900'}`}>
-              {stats.level >= 2 ? <i className="fa-solid fa-microphone"></i> : <i className="fa-solid fa-lock text-sm"></i>}
-            </button>
-          </div>
-
-          <button onClick={() => setScreen('leaderboard')} className={`flex flex-col items-center gap-1 transition-all ${screen === 'leaderboard' ? 'text-yellow-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
-            <i className="fa-solid fa-trophy text-lg"></i>
-            <span className="text-[10px] font-bold">الشرف</span>
-          </button>
-          
-          <button onClick={() => stats.level >= 3 && setScreen('tajweed')} className={`flex flex-col items-center gap-1 transition-all ${stats.level < 3 ? 'opacity-50 grayscale' : ''} ${screen === 'tajweed' ? 'text-green-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
-            {stats.level >= 3 ? <i className="fa-solid fa-book-quran text-lg"></i> : <i className="fa-solid fa-lock text-lg"></i>}
-            <span className="text-[10px] font-bold">الأحكام</span>
-          </button>
-        </div>
-      </nav>
+      <BottomNav />
     </main>
   );
 }

@@ -7,7 +7,7 @@ export function Dashboard() {
   const xpProgress = (stats.xp || 0) % 100;
 
   const SKILL_TREE = [
-    { id: 'makharij',      levelReq: 1, icon: 'fa-radar',       title: 'الأساس الصوتي (المخارج)', desc: 'تعلم مخارج الحروف الأساسية بدقة عبر الرادار الثلاثي الأبعاد.', c: 'var(--green)', bg: 'var(--green-pale)' },
+    { id: 'makharij',      levelReq: 1, icon: 'fa-tower-broadcast',       title: 'الأساس الصوتي (المخارج)', desc: 'تعلم مخارج الحروف الأساسية بدقة عبر الرادار الثلاثي الأبعاد.', c: 'var(--green)', bg: 'var(--green-pale)' },
     { id: 'breathwork',    levelReq: 2, icon: 'fa-lungs',       title: 'هندسة الهواء (التنفس)', desc: 'تحكم في نَفَسِك لإطالة التلاوة وإتقان الوقف والابتداء.', c: 'var(--gold)', bg: 'var(--gold-pale)' },
     { id: 'tajweed',       levelReq: 3, icon: 'fa-book-quran',  title: 'الأحكام (مستكشف التحفة)', desc: 'اكتشف أحكام النون والميم عبر أبيات تحفة الأطفال التفاعلية.', c: 'var(--purple)', bg: 'var(--purple-pale)' },
     { id: 'tuhfa',         levelReq: 3, icon: 'fa-scroll',      title: 'متن التحفة الشامل', desc: 'اقرأ متن تحفة الأطفال كاملاً كمرجع شامل لكل الأحكام.', c: 'var(--blue)', bg: 'var(--blue-pale)' },
