@@ -1,19 +1,12 @@
 import React from 'react';
 import { useStore } from '../store/useStore';
+import { SKILL_TREE } from '../data/tajweedData';
+import { InstallButton } from './ui/InstallButton';
 
 export function Dashboard() {
   const { stats, setScreen } = useStore();
 
   const xpProgress = (stats.xp || 0) % 100;
-
-  const SKILL_TREE = [
-    { id: 'makharij',      levelReq: 1, icon: 'fa-tower-broadcast',       title: 'الأساس الصوتي (المخارج)', desc: 'تعلم مخارج الحروف الأساسية بدقة عبر الرادار الثلاثي الأبعاد.', c: 'var(--green)', bg: 'var(--green-pale)' },
-    { id: 'breathwork',    levelReq: 2, icon: 'fa-lungs',       title: 'هندسة الهواء (التنفس)', desc: 'تحكم في نَفَسِك لإطالة التلاوة وإتقان الوقف والابتداء.', c: 'var(--gold)', bg: 'var(--gold-pale)' },
-    { id: 'tajweed',       levelReq: 3, icon: 'fa-book-quran',  title: 'الأحكام (مستكشف التحفة)', desc: 'اكتشف أحكام النون والميم عبر أبيات تحفة الأطفال التفاعلية.', c: 'var(--purple)', bg: 'var(--purple-pale)' },
-    { id: 'tuhfa',         levelReq: 3, icon: 'fa-scroll',      title: 'متن التحفة الشامل', desc: 'اقرأ متن تحفة الأطفال كاملاً كمرجع شامل لكل الأحكام.', c: 'var(--blue)', bg: 'var(--blue-pale)' },
-    { id: 'golden_mirror', levelReq: 4, icon: 'fa-microphone-lines', title: 'المرآة الذهبية (AI)', desc: 'قارن نطقك بصوتك المستنسخ ذكياً بتجويد مثالي 100%.', c: '#b07d10', bg: '#fef3c7' },
-    { id: 'tawatur',       levelReq: 5, icon: 'fa-globe',       title: 'تحديات التواتر (MMO)', desc: 'غرف تلاوة جماعية متزامنة لفتح أسرار الإجازات النادرة.', c: 'var(--red)', bg: 'var(--red-pale)' },
-  ];
 
   return (
     <div className="screen-in max-w-3xl mx-auto pb-8">
@@ -32,6 +25,10 @@ export function Dashboard() {
           </div>
           <p className="text-[10px] text-gray-500 mt-1 font-bold">{100 - xpProgress} XP للمستوى التالي</p>
         </div>
+      </div>
+
+      <div className="px-2 mb-4">
+        <InstallButton />
       </div>
 
       {/* Stats Grid */}
