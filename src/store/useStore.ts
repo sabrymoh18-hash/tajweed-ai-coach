@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type Screen = 'dashboard' | 'makharij' | 'breathwork' | 'tajweed' | 'feedback' | 'leaderboard' | 'tuhfa';
+export type Screen = 'dashboard' | 'makharij' | 'breathwork' | 'tajweed' | 'feedback' | 'leaderboard' | 'tuhfa' | 'golden_mirror' | 'tawatur';
 
 export interface Stats {
   sessions: number;
@@ -11,6 +11,7 @@ export interface Stats {
   lastVisit: string;
   visitedTajweed: boolean;
   unlockedBadges: string[];
+  unlockedNodes: string[];
   xp: number;
   level: number;
 }
@@ -23,6 +24,7 @@ export const INIT_STATS: Stats = {
   lastVisit: '',
   visitedTajweed: false,
   unlockedBadges: [],
+  unlockedNodes: ['makharij'], // Foundation unlocked by default
   xp: 0,
   level: 1,
 };

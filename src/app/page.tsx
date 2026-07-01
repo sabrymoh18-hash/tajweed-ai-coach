@@ -10,6 +10,8 @@ import { TajweedRules } from '../components/TajweedRules';
 import { Feedback } from '../components/Feedback';
 import { Leaderboard } from '../components/Leaderboard';
 import { TuhfaFullText } from '../components/TuhfaFullText';
+import { GoldenMirror } from '../components/GoldenMirror';
+import { TawaturRaids } from '../components/TawaturRaids';
 
 export default function Home() {
   const { screen, stats, setStats, setScreen } = useStore();
@@ -56,6 +58,8 @@ export default function Home() {
         {screen === 'feedback'    && <Feedback />}
         {screen === 'leaderboard' && <Leaderboard />}
         {screen === 'tuhfa'       && <TuhfaFullText />}
+        {screen === 'golden_mirror' && <GoldenMirror />}
+        {screen === 'tawatur'     && <TawaturRaids />}
       </div>
 
       {/* Navigation Bar (Mobile & Desktop) */}
