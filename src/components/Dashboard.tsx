@@ -10,12 +10,13 @@ export function Dashboard() {
     { id: 'makharij',      levelReq: 1, icon: 'fa-radar',       title: 'الأساس الصوتي (المخارج)', desc: 'تعلم مخارج الحروف الأساسية بدقة عبر الرادار الثلاثي الأبعاد.', c: 'var(--green)', bg: 'var(--green-pale)' },
     { id: 'breathwork',    levelReq: 2, icon: 'fa-lungs',       title: 'هندسة الهواء (التنفس)', desc: 'تحكم في نَفَسِك لإطالة التلاوة وإتقان الوقف والابتداء.', c: 'var(--gold)', bg: 'var(--gold-pale)' },
     { id: 'tajweed',       levelReq: 3, icon: 'fa-book-quran',  title: 'الأحكام (مستكشف التحفة)', desc: 'اكتشف أحكام النون والميم عبر أبيات تحفة الأطفال التفاعلية.', c: 'var(--purple)', bg: 'var(--purple-pale)' },
+    { id: 'tuhfa',         levelReq: 3, icon: 'fa-scroll',      title: 'متن التحفة الشامل', desc: 'اقرأ متن تحفة الأطفال كاملاً كمرجع شامل لكل الأحكام.', c: 'var(--blue)', bg: 'var(--blue-pale)' },
     { id: 'golden_mirror', levelReq: 4, icon: 'fa-microphone-lines', title: 'المرآة الذهبية (AI)', desc: 'قارن نطقك بصوتك المستنسخ ذكياً بتجويد مثالي 100%.', c: '#b07d10', bg: '#fef3c7' },
     { id: 'tawatur',       levelReq: 5, icon: 'fa-globe',       title: 'تحديات التواتر (MMO)', desc: 'غرف تلاوة جماعية متزامنة لفتح أسرار الإجازات النادرة.', c: 'var(--red)', bg: 'var(--red-pale)' },
   ];
 
   return (
-    <div className="screen-in max-w-md mx-auto pb-8">
+    <div className="screen-in max-w-3xl mx-auto pb-8">
       {/* Header Profile */}
       <div className="flex items-center gap-4 mb-8 pt-4 px-2">
         <div className="w-14 h-14 rounded-full bg-gradient-to-br from-green-600 to-green-900 flex items-center justify-center shadow-lg border-2 border-green-100 relative">
@@ -56,7 +57,7 @@ export function Dashboard() {
           شجرة المهارات (المسار التعليمي)
         </h3>
         
-        <div className="relative pl-4 space-y-6 before:absolute before:inset-0 before:ml-10 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+        <div className="relative pr-4 space-y-6 before:absolute before:inset-0 before:mr-10 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
           {SKILL_TREE.map((node, i) => {
             const isUnlocked = stats.level >= node.levelReq;
             

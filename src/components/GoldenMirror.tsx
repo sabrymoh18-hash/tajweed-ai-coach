@@ -3,13 +3,13 @@ import { useStore } from '../store/useStore';
 import { Waveform } from './ui/Waveform';
 
 export function GoldenMirror() {
-  const { setScreen } = useStore();
+  const { setScreen, addXP } = useStore();
   const [recording, setRecording] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
   const [score, setScore] = useState<number | null>(null);
 
   // Mock audio data for the "Perfect AI Waveform"
-  const perfectBars = Array.from({ length: 40 }, () => Math.random() * 80 + 20);
+  const perfectBars = React.useMemo(() => Array.from({ length: 40 }, () => Math.random() * 80 + 20), []);
   const [userBars, setUserBars] = useState<number[]>(Array(40).fill(10));
 
   useEffect(() => {
@@ -31,7 +31,9 @@ export function GoldenMirror() {
       setAnalyzing(true);
       setTimeout(() => {
         setAnalyzing(false);
-        setScore(Math.floor(Math.random() * 20) + 80); // random score 80-100
+        const newScore = Math.floor(Math.random() * 20) + 80;
+        setScore(newScore); // random score 80-100
+        addXP(newScore);
       }, 2000);
     } else {
       setScore(null);
@@ -65,9 +67,9 @@ export function GoldenMirror() {
 
         {/* Perfect Waveform (The Mirror) */}
         <div className="card p-4 relative z-10 bg-[#fef3c7] border-2 border-yellow-400/50 shadow-lg shadow-yellow-500/10">
-          <div className="flex justify-between items-center mb-2 px-2">
-            <span className="text-xs font-black text-yellow-800 uppercase tracking-widest"><i className="fa-solid fa-robot mr-1"></i> التجويد المثالي (صوتك المستنسخ)</span>
-            <button className="w-8 h-8 rounded-full bg-yellow-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+          <div className="flex justify-between items-center mb-2 px-2 flex-wrap gap-2">
+            <span className="text-[10px] sm:text-xs font-black text-yellow-800 uppercase tracking-widest truncate max-w-[80%]"><i className="fa-solid fa-robot mr-1"></i> التجويد المثالي (صوتك المستنسخ)</span>
+            <button className="w-8 h-8 rounded-full bg-yellow-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-md shrink-0">
               <i className="fa-solid fa-play text-xs"></i>
             </button>
           </div>

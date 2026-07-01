@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useStore } from '../store/useStore';
 
 export function TawaturRaids() {
-  const { setScreen } = useStore();
+  const { setScreen, addXP, setStats, stats } = useStore();
   const [phase, setPhase] = useState<'lobby' | 'sync' | 'result'>('lobby');
   const [countdown, setCountdown] = useState(5);
   const [syncPower, setSyncPower] = useState(0);
@@ -11,27 +11,27 @@ export function TawaturRaids() {
     let t: any;
     if (phase === 'lobby') {
       t = setInterval(() => {
-        setCountdown((c) => {
-          if (c <= 1) {
-            setPhase('sync');
-            return 5;
-          }
-          return c - 1;
-        });
+        setCountdown((c) => Math.max(0, c - 1));
       }, 1000);
     } else if (phase === 'sync') {
       t = setInterval(() => {
-        setSyncPower((p) => {
-          if (p >= 100) {
-            setPhase('result');
-            return 100;
-          }
-          return p + Math.random() * 15;
-        });
+        setSyncPower((p) => Math.min(100, p + Math.random() * 15));
       }, 500);
     }
     return () => clearInterval(t);
   }, [phase]);
+
+  useEffect(() => {
+    if (phase === 'lobby' && countdown === 0) {
+      setPhase('sync');
+    } else if (phase === 'sync' && syncPower >= 100) {
+      setPhase('result');
+      addXP(500); // Reward massive XP for MMO Raid
+      if (!stats.unlockedBadges.includes('إجازة الفاتحة')) {
+        setStats(prev => ({ ...prev, unlockedBadges: [...prev.unlockedBadges, 'إجازة الفاتحة'] }));
+      }
+    }
+  }, [countdown, syncPower, phase, addXP, setStats, stats.unlockedBadges]);
 
   return (
     <div className="min-h-[100dvh] bg-[#050a08] text-white p-4 relative overflow-hidden flex flex-col">

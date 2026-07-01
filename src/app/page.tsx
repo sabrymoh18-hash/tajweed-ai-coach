@@ -76,8 +76,8 @@ export default function Home() {
           </button>
           
           <div className="relative -top-6">
-            <button onClick={() => setScreen('breathwork')} className={`w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-lg shadow-green-900/50 transition-transform hover:scale-110 ${screen === 'breathwork' ? 'bg-green-500 text-white' : 'bg-[#1a3a28] text-green-400 border-2 border-green-900'}`}>
-              <i className="fa-solid fa-microphone"></i>
+            <button onClick={() => stats.level >= 2 && setScreen('breathwork')} className={`w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-lg shadow-green-900/50 transition-transform ${stats.level < 2 ? 'opacity-50 grayscale' : 'hover:scale-110'} ${screen === 'breathwork' ? 'bg-green-500 text-white' : 'bg-[#1a3a28] text-green-400 border-2 border-green-900'}`}>
+              {stats.level >= 2 ? <i className="fa-solid fa-microphone"></i> : <i className="fa-solid fa-lock text-sm"></i>}
             </button>
           </div>
 
@@ -86,8 +86,8 @@ export default function Home() {
             <span className="text-[10px] font-bold">الشرف</span>
           </button>
           
-          <button onClick={() => setScreen('tajweed')} className={`flex flex-col items-center gap-1 transition-all ${screen === 'tajweed' ? 'text-green-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
-            <i className="fa-solid fa-book-quran text-lg"></i>
+          <button onClick={() => stats.level >= 3 && setScreen('tajweed')} className={`flex flex-col items-center gap-1 transition-all ${stats.level < 3 ? 'opacity-50 grayscale' : ''} ${screen === 'tajweed' ? 'text-green-400 scale-110' : 'text-gray-500 hover:text-gray-300'}`}>
+            {stats.level >= 3 ? <i className="fa-solid fa-book-quran text-lg"></i> : <i className="fa-solid fa-lock text-lg"></i>}
             <span className="text-[10px] font-bold">الأحكام</span>
           </button>
         </div>
